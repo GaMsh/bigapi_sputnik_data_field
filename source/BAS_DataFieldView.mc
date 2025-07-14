@@ -16,9 +16,9 @@ class BAS_DataFieldView extends WatchUi.DataField {
 	var notified = false;
 	var displayPm2_5 = true;
 	const TEMPERATURE_FIELD_ID = 0;
-    const HUMIDITY_FIELD_ID = 0;
-    const PRESSURE_FIELD_ID = 0;
-    const STATION_FIELD_ID = 0;
+    const HUMIDITY_FIELD_ID = 1;
+    const PRESSURE_FIELD_ID = 2;
+    const STATION_FIELD_ID = 3;
 	var displayVersion = true;
 	const secondsToDisplayVersion = 14;
 	var initialTime;
@@ -31,10 +31,10 @@ class BAS_DataFieldView extends WatchUi.DataField {
         try {
 			temperatureField = createField("Temperature", TEMPERATURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32, 
 				{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
-            humidityField = createField("Temperature", HUMIDITY_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
+            humidityField = createField("Humidity", HUMIDITY_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
                 {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
-            pressureField = createField("Temperature", PRESSURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
-                {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"mm Hg"});
+            pressureField = createField("Pressure", PRESSURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
+                {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"mmHg"});
             stationField = createField("Station", STATION_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
                 {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>""});
   		} catch (ex) {
