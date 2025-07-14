@@ -9,14 +9,16 @@ using Toybox.Math;
 
 class BAS_DataFieldView extends WatchUi.DataField {
 
-    hidden var aqiValue;
+    hidden var weatherData;
     const particulateValue = "PM2.5";
     const ozoneValue = "O3";
 	var enableNotifications = false;
 	var notified = false;
 	var displayPm2_5 = true;
-	const BAS_FIELD_ID = 0;
-	const TEMPERATURE_FIELD_ID = 1;
+	const TEMPERATURE_FIELD_ID = 0;
+    const HUMIDITY_FIELD_ID = 0;
+    const PRESSURE_FIELD_ID = 0;
+    const STATION_FIELD_ID = 0;
 	var displayVersion = true;
 	const secondsToDisplayVersion = 14;
 	var initialTime;
@@ -24,13 +26,17 @@ class BAS_DataFieldView extends WatchUi.DataField {
 	
     function initialize(notifications) {
         DataField.initialize();
-        aqiValue = null;
+        weatherData = null;
         enableNotifications = notifications;
         try {
-		  	aqiField = createField("BAS", BAS_FIELD_ID, FitContributor.DATA_TYPE_UINT32,
-		  		{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"PM2.5"});
 			temperatureField = createField("Temperature", TEMPERATURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32, 
-				{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"F"});
+				{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
+            humidityField = createField("Temperature", HUMIDITY_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
+                {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
+            pressureField = createField("Temperature", PRESSURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
+                {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"mm Hg"});
+            stationField = createField("Station", STATION_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
+                {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>""});
   		} catch (ex) {
   			System.println("could not create fit file fields " + ex);
   		}
@@ -92,7 +98,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
-    	aqiValue = weatherData;
+    	weatherData = weatherData;
     }
 
     // Display the value you computed here. This will be called
@@ -116,25 +122,25 @@ class BAS_DataFieldView extends WatchUi.DataField {
         var currentAqi = null;
         // if the user has toggled to display ozone but we don't have a value for it in the results
         // switch back to displaying PM 2.5
-        if (aqiValue != null) {
+        if (weatherData != null) {
         	if (!displayPm2_5) {
-		        if (!aqiValue.hasKey(ozoneValue) || aqiValue.get(ozoneValue) == null) {
+		        if (!weatherData.hasKey(ozoneValue) || weatherData.get(ozoneValue) == null) {
 		        	displayPm2_5 = true;
 		    	}
 	    	}
     	}
         label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
 		var selectedValue = displayPm2_5 ? particulateValue : ozoneValue;
-        if (aqiValue != null && aqiValue.hasKey(selectedValue) && aqiValue.get(selectedValue) != null) {
-        	currentAqi = aqiValue.get(selectedValue);
+        if (weatherData != null && weatherData.hasKey(selectedValue) && weatherData.get(selectedValue) != null) {
+        	currentAqi = weatherData.get(selectedValue);
 			if (currentAqi instanceof Lang.Number) {
 	        	value.setText(Math.round(currentAqi).toString().substring(0, 4));
 			}
     	} else {
-			if (aqiValue != null && aqiValue.get("error") != null) {
+			if (weatherData != null && weatherData.get("error") != null) {
 				background.setColor(Graphics.COLOR_RED);
 				value.setColor(Graphics.COLOR_WHITE);
-				value.setText(aqiValue.get("error").toString().substring(0, 4));
+				value.setText(weatherData.get("error").toString().substring(0, 4));
 			} else {
 				if (errorDrawable != null) {
 					value.setVisible(false);
@@ -151,8 +157,8 @@ class BAS_DataFieldView extends WatchUi.DataField {
 			}
 		}
 		if (currentAqi != null && getBackgroundColor() == Graphics.COLOR_WHITE) {
-			if (aqiValue != null && aqiValue.hasKey("error")) {
-				if (aqiValue.hasKey("hideError")) {
+			if (weatherData != null && weatherData.hasKey("error")) {
+				if (weatherData.hasKey("hideError")) {
 					value.setColor(Graphics.COLOR_LT_GRAY);
 					if (temperatureDrawable != null) {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
@@ -160,7 +166,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				} else {
 					background.setColor(Graphics.COLOR_RED);
 					value.setColor(Graphics.COLOR_WHITE);
-					value.setText(aqiValue.get("error").toString().substring(0, 4));
+					value.setText(weatherData.get("error").toString().substring(0, 4));
 				}
 				notified = false;
 			}
@@ -194,8 +200,8 @@ class BAS_DataFieldView extends WatchUi.DataField {
 		}
         else if (currentAqi != null && getBackgroundColor() == Graphics.COLOR_BLACK) {
             value.setColor(Graphics.COLOR_WHITE);        	
-			if (aqiValue != null && aqiValue.hasKey("error")) {
-				if (aqiValue.hasKey("hideError")) {
+			if (weatherData != null && weatherData.hasKey("error")) {
+				if (weatherData.hasKey("hideError")) {
 					value.setColor(Graphics.COLOR_LT_GRAY);
 					if (temperatureDrawable != null) {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
@@ -203,7 +209,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				} else {
 					background.setColor(Graphics.COLOR_RED);
 					value.setColor(Graphics.COLOR_WHITE);
-					value.setText(aqiValue.get("error").toString().substring(0, 4));
+					value.setText(weatherData.get("error").toString().substring(0, 4));
 				}
 				notified = false;
 			}
@@ -247,30 +253,30 @@ class BAS_DataFieldView extends WatchUi.DataField {
 	            label.setColor(Graphics.COLOR_BLACK);
             }
         }
-		if (aqiValue != null && aqiValue.hasKey("provider")) {
+		if (weatherData != null && weatherData.hasKey("url")) {
 			var indicator = View.findDrawableById("indicator") as WatchUi.Text;
-			switch(aqiValue.get("provider")) {
-			case 1:
-				indicator.setText("AirNow");
+//			switch(weatherData.get("url")) {
+//			case 1:
+//				indicator.setText("AirNow");
+//				indicator.setColor(Graphics.COLOR_DK_GRAY);
+//				break;
+//			case 2:
+//				indicator.setText("Purple");
+//				indicator.setColor(Graphics.COLOR_PURPLE);
+//				break;
+//			case 3:
 				indicator.setColor(Graphics.COLOR_DK_GRAY);
-				break;
-			case 2:			
-				indicator.setText("Purple");
-				indicator.setColor(Graphics.COLOR_PURPLE);
-				break;
-			case 3:
-				indicator.setColor(Graphics.COLOR_DK_GRAY);
-				indicator.setText("IQAir");
-				break;
-			}
+				indicator.setText(weatherData.get("url"));
+//				break;
+//			}
 		}
 		if (temperatureDrawable != null && temperatureValue != null) {
 			var mySettings = System.getDeviceSettings();
 			var workingTemperature = Math.round(temperatureValue);
-			if (mySettings.temperatureUnits == System.UNIT_METRIC)
-			{
-				workingTemperature = Math.round((((temperatureValue - 32) * 5) / 9));
-			}
+//			if (mySettings.temperatureUnits == System.UNIT_METRIC)
+//			{
+//				workingTemperature = Math.round((((temperatureValue - 32) * 5) / 9));
+//			}
 			temperatureDrawable.setText(workingTemperature.toString());
 		}
 		var version = View.findDrawableById("version") as WatchUi.Text;
