@@ -139,15 +139,15 @@ class BAS_DataFieldView extends WatchUi.DataField {
 //    	 else {
 //			if (weatherData != null && weatherData.get("error") != null) {
 //				background.setColor(Graphics.COLOR_RED);
-//				humidity.setColor(Graphics.COLOR_WHITE);
-//				humidity.setText(weatherData.get("error").toString().substring(0, 4));
+//				humidityDrawable.setColor(Graphics.COLOR_WHITE);
+//				humidityDrawable.setText(weatherData.get("error").toString().substring(0, 4));
 //			} else {
 //				if (errorDrawable != null) {
-//					humidity.setVisible(false);
+//					humidityDrawable.setVisible(false);
 //					errorDrawable.setText("N/A 1");
 //					errorDrawable.setVisible(true);
 //				} else {
-//					humidity.setText("N/A 2");
+//					humidityDrawable.setText("N/A 2");
 //				}
 //			}
 //		}
@@ -159,38 +159,38 @@ class BAS_DataFieldView extends WatchUi.DataField {
 		if (currentWeather != null && getBackgroundColor() == Graphics.COLOR_WHITE) {
 			if (weatherData != null && weatherData.hasKey("error")) {
 				if (weatherData.hasKey("hideError")) {
-					humidity.setColor(Graphics.COLOR_LT_GRAY);
+					humidityDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					if (temperatureDrawable != null) {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					}
 				} else {
 					background.setColor(Graphics.COLOR_RED);
-					humidity.setColor(Graphics.COLOR_WHITE);
-					humidity.setText(weatherData.get("error").toString().substring(0, 4));
+					humidityDrawable.setColor(Graphics.COLOR_WHITE);
+					humidityDrawable.setText(weatherData.get("error").toString().substring(0, 4));
 				}
 				notified = false;
 			}
 			else if (humidityValue < 50) {
-				humidity.setColor(Graphics.COLOR_DK_GREEN);
+				humidityDrawable.setColor(Graphics.COLOR_DK_GREEN);
 				notified = false;
 			}
 			else if (humidityValue < 60) {
-				humidity.setColor(Graphics.COLOR_YELLOW);
+				humidityDrawable.setColor(Graphics.COLOR_YELLOW);
 				notified = false;
 			}
 			else if (humidityValue < 70) {
-				humidity.setColor(Graphics.COLOR_ORANGE);
+				humidityDrawable.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
 			else if (humidityValue < 80) {
-				humidity.setColor(Graphics.COLOR_DK_RED);
+				humidityDrawable.setColor(Graphics.COLOR_DK_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
 				}
 			}
 			else {
-				humidity.setColor(Graphics.COLOR_PURPLE);
+				humidityDrawable.setColor(Graphics.COLOR_PURPLE);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
@@ -199,41 +199,41 @@ class BAS_DataFieldView extends WatchUi.DataField {
             label.setColor(Graphics.COLOR_BLACK);
 		}
         else if (currentWeather != null && getBackgroundColor() == Graphics.COLOR_BLACK) {
-            humidity.setColor(Graphics.COLOR_WHITE);
+            humidityDrawable.setColor(Graphics.COLOR_WHITE);
 			if (weatherData != null && weatherData.hasKey("error")) {
 				if (weatherData.hasKey("hideError")) {
-					humidity.setColor(Graphics.COLOR_LT_GRAY);
+					humidityDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					if (temperatureDrawable != null) {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					}
 				} else {
 					background.setColor(Graphics.COLOR_RED);
-					humidity.setColor(Graphics.COLOR_WHITE);
-					humidity.setText(weatherData.get("error").toString().substring(0, 4));
+					humidityDrawable.setColor(Graphics.COLOR_WHITE);
+					humidityDrawable.setText(weatherData.get("error").toString().substring(0, 4));
 				}
 				notified = false;
 			}
 			else if (humidityValue < 50) {
-				humidity.setColor(0x00FD00/*Graphics.COLOR_GREEN*/);
+				humidityDrawable.setColor(0x00FD00/*Graphics.COLOR_GREEN*/);
 				notified = false;
 			}
 			else if (humidityValue < 60) {
-				humidity.setColor(0xFFFF00);
+				humidityDrawable.setColor(0xFFFF00);
 				notified = false;
 			}
 			else if (humidityValue < 70) {
-				humidity.setColor(Graphics.COLOR_ORANGE);
+				humidityDrawable.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
 			else if (humidityValue < 80) {
-				humidity.setColor(Graphics.COLOR_RED);
+				humidityDrawable.setColor(Graphics.COLOR_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
 				}
 			}
 			else {
-				humidity.setColor(Graphics.COLOR_PURPLE);
+				humidityDrawable.setColor(Graphics.COLOR_PURPLE);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
@@ -242,13 +242,13 @@ class BAS_DataFieldView extends WatchUi.DataField {
             label.setColor(Graphics.COLOR_WHITE);
         } else {
         	if (getBackgroundColor() == Graphics.COLOR_BLACK) {
-	            humidity.setColor(Graphics.COLOR_WHITE);
+	            humidityDrawable.setColor(Graphics.COLOR_WHITE);
 				if (errorDrawable != null && errorDrawable instanceof WatchUi.Text) {
 					errorDrawable.setColor(Graphics.COLOR_WHITE);
 				}
 	            label.setColor(Graphics.COLOR_WHITE);
         	} else {
-	            humidity.setColor(Graphics.COLOR_BLACK);
+	            humidityDrawable.setColor(Graphics.COLOR_BLACK);
 				errorDrawable.setColor(Graphics.COLOR_BLACK);
 	            label.setColor(Graphics.COLOR_BLACK);
             }
