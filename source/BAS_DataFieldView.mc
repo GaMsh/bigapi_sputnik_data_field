@@ -165,19 +165,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				}
 				notified = false;
 			}
-			else if (currentWeather < 51) {
+			else if (humidityValue < 50) {
 				humidity.setColor(Graphics.COLOR_DK_GREEN);
 				notified = false;
 			}
-			else if (currentWeather < 101) {
+			else if (humidityValue < 60) {
 				humidity.setColor(Graphics.COLOR_YELLOW);
 				notified = false;
 			}
-			else if (currentWeather < 151) {
+			else if (humidityValue < 70) {
 				humidity.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
-			else if (currentWeather < 201) {
+			else if (humidityValue < 80) {
 				humidity.setColor(Graphics.COLOR_DK_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
@@ -208,19 +208,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				}
 				notified = false;
 			}
-			else if (currentWeather < 51) {
+			else if (humidityValue < 50) {
 				humidity.setColor(0x00FD00/*Graphics.COLOR_GREEN*/);
 				notified = false;
 			}
-			else if (currentWeather < 101) {
+			else if (humidityValue < 60) {
 				humidity.setColor(0xFFFF00);
 				notified = false;
 			}
-			else if (currentWeather < 151) {
+			else if (humidityValue < 70) {
 				humidity.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
-			else if (currentWeather < 201) {
+			else if (humidityValue < 80) {
 				humidity.setColor(Graphics.COLOR_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
