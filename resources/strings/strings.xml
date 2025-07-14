@@ -1,8 +1,8 @@
 <strings>
-    <string id="AppName">AirQualityIndex</string>
+    <string id="AppName">BigApiSputnik</string>
 
-    <string id="label">AQI (PM 2.5)</string>
-    <string id="shortLabel">AQI</string>
+    <string id="label">Спутник</string>
+    <string id="shortLabel">СПУТ</string>
     <string id="ozoneLabel">Ozone</string>
     <string id="refreshIntervalTitle">Refresh Interval in seconds</string>
 	<string id="enableNotificationsTitle">Notify on poor air quality</string>    
@@ -19,7 +19,7 @@
 	<string id="TemperatureUnitsLabel">F</string>
 	<string id="EmailTitle">Email address</string>
 	<string id="EmailPrompt">Your email address</string>
-	<string id="Version">Version 1.23.4</string>
+	<string id="Version">Version 0.1</string>
 	<string id="TemperatureAlways">Display temperature regardless of field size</string>
 	<string id="PurpleAirCorrection">Correct PurpleAir raw data using US EPA formula</string>
 </strings>

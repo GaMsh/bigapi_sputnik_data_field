@@ -98,25 +98,7 @@ class AQI_DataFieldApp extends Application.AppBase {
 			var data = data_raw as Lang.Dictionary;
 			if (data.hasKey("Temperature")) {
 				temperatureValue = data.get("Temperature");
-			}
-        	if (data.hasKey("PM2.5")) {
-        		if (aqiField != null) {
-	        		if (fieldIsDirty || aqiData.get(pm2_5) != data.get(pm2_5)) {
-						var pm_2_5_value = data.get(pm2_5);
-						var pm_2_5_is_number = false;
-						if (pm_2_5_value instanceof Toybox.Lang.Number) {
-							pm_2_5_is_number = true;
-						}
-	        			if (pm_2_5_value == null || !pm_2_5_is_number) {
-	        				aqiField.setData(0);
-	        			} else {
-		    				//System.println("About to set field to " + data.get(pm2_5));
-							aqiField.setData(data.get(pm2_5));
-						}
-						fieldIsDirty = false;
-					}
-        		}
-        		aqiData = data;
+				aqiData = data;
 				if (temperatureField != null && temperatureValue != null && temperatureValue instanceof Toybox.Lang.Number) {
 					temperatureField.setData(temperatureValue);
 				}

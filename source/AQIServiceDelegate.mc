@@ -19,18 +19,18 @@ class AQIServiceDelgate extends Toybox.System.ServiceDelegate {
     	// var now=Toybox.System.getClockTime();	
         // var ts=now.hour+":"+now.min.format("%02d");    
     	// System.println("onTemporalEvent: "+ts);
-    	requestCurrentAqi();	
+    	requestCurrentWeather();	
 	}
 	
-	function requestCurrentAqi() {
+	function requestCurrentWeather() {
 		var position = Position.getInfo();
 		if (position != null) {
 			var coords = position.position;
-			if (coords != null && position.accuracy > Position.QUALITY_POOR) {
-//				System.println("Coordinates: " + coords.toGeoString(Position.GEO_DM) + " Accuracy: " + position.accuracy);
+			if (coords != null) { // && position.accuracy > Position.QUALITY_POOR
+				System.println("Coordinates: " + coords.toGeoString(Position.GEO_DM) + " Accuracy: " + position.accuracy);
 				var positionInDegrees = coords.toDegrees();
 				if (positionInDegrees != null) {
-//					System.println("Latitude " + positionInDegrees[0] + " longitude " + positionInDegrees[1]);
+					System.println("Latitude " + positionInDegrees[0] + " longitude " + positionInDegrees[1]);
 					makeRequest(positionInDegrees[0], positionInDegrees[1]);
 				}
 			} else {
@@ -46,7 +46,7 @@ class AQIServiceDelgate extends Toybox.System.ServiceDelegate {
        var aqi = null;
        var interval = Application.Properties.getValue(intervalKey);
        if (responseCode == 200) {
-           System.println("Request Successful " + data);           // print success
+           System.println("Request Successful " + data);
            if (data.isEmpty()) {
         	   interval = minimumInterval;
     	   }	           	
@@ -77,41 +77,27 @@ class AQIServiceDelgate extends Toybox.System.ServiceDelegate {
    }
 
     function makeRequest(latitude, longitude) {
-        var urlBase = "https://aqi-gateway.herokuapp.com/";
-        var url;
+        var urlBase = "https://bigapi.ru/";
         var email = Application.Properties.getValue("email");
-        var provider = Application.Properties.getValue("aqiProvider");
-        var purpleIsRaw = !Application.Properties.getValue("purpleAirEpaCorrection");
-        if (provider == 1) {
-            url = urlBase + "aqi";
-        } else if (provider == 2) {
-            url = urlBase + "purpleair";
-        } else {
-            url = urlBase + "iqair";
-        }
         if (email == null || email == "--") {
             email = "";
         }
-        var params = {                                              // set the parameters
-                "lat" => latitude,
-                "lon" => longitude,
-                "device" => System.getDeviceSettings().partNumber,
-                "sysId" => System.getDeviceSettings().uniqueIdentifier,
-                "email" => email
+        var params = {
+            "lat" => latitude,
+            "lon" => longitude,
+            "device" => System.getDeviceSettings().partNumber,
+            "sysId" => System.getDeviceSettings().uniqueIdentifier,
+            "email" => email
         };
-        if (purpleIsRaw) {
-            params.put("rawData", true);
-        }
-        var options = {                                             // set the options
-            :method => Communications.HTTP_REQUEST_METHOD_GET,      // set HTTP method
-            :headers => {                                           // set headers
-                    "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON},
-                                                                    // set response type
+        var options = {
+            :method => Communications.HTTP_REQUEST_METHOD_GET,
+            :headers => {
+                "Content-Type" => Communications.REQUEST_CONTENT_TYPE_JSON
+            },
             :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
         };
 
-        // Make the Communications.makeWebRequest() call
-        Communications.makeWebRequest(url, params, options, method(:onReceive));
+        Communications.makeWebRequest(urlBase + "sputnik", params, options, method(:onReceive));
   }      
   
 }

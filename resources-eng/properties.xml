@@ -1,12 +1,9 @@
 <resources>
     <properties>
-    	<property id="refreshInterval" type="number">1200</property>
+    	<property id="refreshInterval" type="number">300</property>
     	<property id="enableNotifications" type="boolean">true</property>
-    	<property id="aqiProvider" type="number">1</property>
     	<property id="zerosForNoData" type="boolean">false</property>
-    	<property id="email" type="string">foo@bar.com</property>
-		<property id="tempAlways" type="boolean">false</property>
-		<property id="purpleAirEpaCorrection" type="boolean">true</property>
+    	<property id="email" type="string">contact@velogeek.ru</property>
     </properties>
     
 	<settings>
@@ -16,24 +13,12 @@
         <setting propertyKey="@Properties.enableNotifications" title="@Strings.enableNotificationsTitle">
             <settingConfig type="boolean" />
 		</setting>				
-		<setting propertyKey="@Properties.aqiProvider" title="@Strings.aqiProviderTitle">
-			<settingConfig type="list">
-				<listEntry value="1">@Strings.AirNow</listEntry>
-				<listEntry value="2">@Strings.PurpleAir</listEntry>
-				<listEntry value="3">@Strings.IQAir</listEntry>
-			</settingConfig>
-		</setting>
 		<setting propertyKey="@Properties.zerosForNoData" title="@Strings.ZerosInGraphTitle">
 			<settingConfig type="boolean" />
 		</setting>
-		<setting propertyKey="@Properties.email" title="@Strings.EmailTitle" prompt="@Strings.EmailPrompt" helpUrl="https://www.randoplan.com/aqi">
+		<setting propertyKey="@Properties.email" title="@Strings.EmailTitle" prompt="@Strings.EmailPrompt" helpUrl="https://bigapi.ru">
 			<settingConfig type="email"></settingConfig>
-		</setting>
-		<setting propertyKey="@Properties.tempAlways" title="@Strings.TemperatureAlways"><settingConfig type="boolean" />
-		</setting>
-        <setting propertyKey="@Properties.purpleAirEpaCorrection" title="@Strings.PurpleAirCorrection">
-            <settingConfig type="boolean" />
-		</setting>				
+		</setting>			
 	</settings>
 	
 </resources>    
