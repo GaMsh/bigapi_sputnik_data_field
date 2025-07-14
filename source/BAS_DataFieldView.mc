@@ -109,10 +109,10 @@ class BAS_DataFieldView extends WatchUi.DataField {
         background.setColor(getBackgroundColor());
 
 		var temperatureDrawable = View.findDrawableById("temperature") as WatchUi.Text;
-        var humidity = View.findDrawableById("humidity") as WatchUi.Text;
-		humidity.setVisible(true);
-        var pressure = View.findDrawableById("pressure") as WatchUi.Text;
-        pressure.setVisible(true);
+        var humidityDrawable = View.findDrawableById("humidity") as WatchUi.Text;
+        var pressureDrawable = View.findDrawableById("pressure") as WatchUi.Text;
+        var stationDrawable = View.findDrawableById("station") as WatchUi.Text;
+
 		var errorDrawable = View.findDrawableById("errorValue") as WatchUi.Text;
 		if (errorDrawable != null && errorDrawable has :setVisible) {
 			errorDrawable.setVisible(false);
@@ -121,14 +121,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
         var currentWeather = null;
         label.setText(showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label);
         if (weatherData != null) {
+        	temperatureValue = weatherData.get("temperature");
+			if (temperatureValue instanceof Lang.Number) {
+	        	temperatureDrawable.setText(Math.round(temperatureValue).toString().substring(0, 4));
+			}
+
         	humidityValue = weatherData.get("humidity");
 			if (humidityValue instanceof Lang.Number) {
-	        	humidity.setText(Math.round(humidityValue).toString().substring(0, 4));
+	        	humidityDrawable.setText(Math.round(humidityValue).toString().substring(0, 4));
 			}
 
             pressureValue = weatherData.get("pressure");
             if (pressureValue instanceof Lang.Number) {
-                pressure.setText(Math.round(humidityValue).toString().substring(0, 4));
+                pressureDrawable.setText(Math.round(pressureValue).toString().substring(0, 4));
             }
     	}
 //    	 else {
