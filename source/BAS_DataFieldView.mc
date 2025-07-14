@@ -7,7 +7,7 @@ using Toybox.Application;
 using Toybox.Time;
 using Toybox.Math;
 
-class AQI_DataFieldView extends WatchUi.DataField {
+class BAS_DataFieldView extends WatchUi.DataField {
 
     hidden var aqiValue;
     const particulateValue = "PM2.5";
@@ -15,7 +15,7 @@ class AQI_DataFieldView extends WatchUi.DataField {
 	var enableNotifications = false;
 	var notified = false;
 	var displayPm2_5 = true;
-	const AQI_FIELD_ID = 0;
+	const BAS_FIELD_ID = 0;
 	const TEMPERATURE_FIELD_ID = 1;
 	var displayVersion = true;
 	const secondsToDisplayVersion = 14;
@@ -27,7 +27,7 @@ class AQI_DataFieldView extends WatchUi.DataField {
         aqiValue = null;
         enableNotifications = notifications;
         try {
-		  	aqiField = createField("AQI", AQI_FIELD_ID, FitContributor.DATA_TYPE_UINT32,
+		  	aqiField = createField("BAS", BAS_FIELD_ID, FitContributor.DATA_TYPE_UINT32,
 		  		{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"PM2.5"});
 			temperatureField = createField("Temperature", TEMPERATURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32, 
 				{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"F"});

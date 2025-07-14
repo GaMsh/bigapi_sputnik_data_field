@@ -6,13 +6,13 @@
     <string id="ozoneLabel">Ozone</string>
     <string id="refreshIntervalTitle">Refresh Interval in seconds</string>
 	<string id="enableNotificationsTitle">Notify on poor air quality</string>    
-	<string id="aqiProviderTitle">AQI provider</string>
+	<string id="aqiProviderTitle">BAS provider</string>
 	<string id="ZerosInGraphTitle">Record zeroes when no data</string>
 	<string id="AirNow">EPA AirNow</string>
 	<string id="PurpleAir">Purple Air</string>
 	<string id="IQAir">IQAir</string>
-	<string id="AqiChartLabel">AQI</string>
-	<string id="AqiDataLabel">AQI (PM2.5)</string>
+	<string id="AqiChartLabel">BAS</string>
+	<string id="AqiDataLabel">BAS (PM2.5)</string>
 	<string id="AqiUnitsLabel">PM2.5</string>
 	<string id="TemperatureChartLabel">Temperature</string>
 	<string id="TemperatureDataLabel">Degrees</string>

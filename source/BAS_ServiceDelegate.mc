@@ -7,7 +7,7 @@ import Toybox.Lang;
 using Toybox.Time;
 
 (:background)
-class AQIServiceDelgate extends Toybox.System.ServiceDelegate {
+class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
 
 		const minimumInterval = 5 * 60;
 			

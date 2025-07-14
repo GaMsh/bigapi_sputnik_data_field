@@ -7,16 +7,20 @@ using Toybox.FitContributor;
 import Toybox.Lang;
 using Toybox.Position;
 
-var aqiData = null;
+var weatherData = null;
 var aqiField = null;
 var temperatureField = null;
 var temperatureValue = null;
+var humidityField = null;
+var humidityValue = null;
+var pressureField = null;
+var pressureValue = null;
 const intervalKey = "refreshInterval";
 
 (:background)
-class AQI_DataFieldApp extends Application.AppBase {
+class BAS_DataFieldApp extends Application.AppBase {
 
-	const myKey = "aqidata";
+	const myKey = "weatherData";
 	const pm2_5 = "PM2.5";
 	const enableNotificationsKey = "enableNotifications";
 	var enableNotifications = false;
@@ -50,13 +54,13 @@ class AQI_DataFieldApp extends Application.AppBase {
     function initialize() {
         AppBase.initialize();
         // read what's in storage
-        if (Application has :Storage) {
-	        aqiData = Application.Storage.getValue(myKey);
-	        if (Application has :Properties) {
-	        	enableNotifications = readKeyBool(getApp(), enableNotificationsKey, false);
-		        aqiProvider = readKeyInt(getApp(), "aqiProvider", 1);
-	        }
-        }
+//        if (Application has :Storage) {
+//	        weatherData = Application.Storage.getValue(myKey);
+//	        if (Application has :Properties) {
+//	        	enableNotifications = readKeyBool(getApp(), enableNotificationsKey, false);
+//		        aqiProvider = readKeyInt(getApp(), "aqiProvider", 1);
+//	        }
+//        }
     }
 
     // onStart() is called on application start up
@@ -80,14 +84,14 @@ class AQI_DataFieldApp extends Application.AppBase {
     	} else {
     		System.println("****background not available on this device****");
     	}
-    	view = new AQI_DataFieldView(enableNotifications);
+    	view = new BAS_DataFieldView(enableNotifications);
         return [ view, new TouchDelegate(view) ];
     }
     
     function getServiceDelegate(){
     	//only called in the background	
     	inBackground = true;
-        return [new AQIServiceDelgate()];
+        return [new BAS_ServiceDelegate()];
     }
     
     function onBackgroundData(data_raw as Application.PersistableType) {
@@ -98,7 +102,7 @@ class AQI_DataFieldApp extends Application.AppBase {
 			var data = data_raw as Lang.Dictionary;
 			if (data.hasKey("Temperature")) {
 				temperatureValue = data.get("Temperature");
-				aqiData = data;
+				weatherData = data;
 				if (temperatureField != null && temperatureValue != null && temperatureValue instanceof Toybox.Lang.Number) {
 					temperatureField.setData(temperatureValue);
 				}
@@ -106,29 +110,29 @@ class AQI_DataFieldApp extends Application.AppBase {
     			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
     				aqiField.setData(0);
     				fieldIsDirty = true;
-    				System.println("Recording zero for error fetching AQI");
+    				System.println("Recording zero for error fetching BAS");
     			}
-    			if (aqiData == null) {
-    				aqiData = { "error" => data.get("error"), "hideError" => data.get("hideError") };
+    			if (weatherData == null) {
+    				weatherData = { "error" => data.get("error"), "hideError" => data.get("hideError") };
     			} else {
-    				aqiData.put("error", data.get("error"));
-    				aqiData.put("hideError", data.get("hideError"));
+    				weatherData.put("error", data.get("error"));
+    				weatherData.put("hideError", data.get("hideError"));
 				}
 			} else {
     			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
     				aqiField.setData(0);
     				fieldIsDirty = true;
-    				System.println("Recording zero for missing AQI");
+    				System.println("Recording zero for missing BAS");
     			}
-    			if (aqiData == null) {
-    				aqiData = { "error" => "No data available" };
+    			if (weatherData == null) {
+    				weatherData = { "error" => "No data available" };
 				} else {			
-					aqiData.put("error", "No data available");
+					weatherData.put("error", "No data available");
 				}
 			}
 			if (Application has :Storage) {
-				if (aqiData instanceof Dictionary) {
-					Application.Storage.setValue("aqidata", aqiData);
+				if (weatherData instanceof Dictionary) {
+					Application.Storage.setValue("weatherData", weatherData);
 				}
     		}
     	}
