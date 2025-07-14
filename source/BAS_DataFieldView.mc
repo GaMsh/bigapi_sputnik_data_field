@@ -122,24 +122,30 @@ class BAS_DataFieldView extends WatchUi.DataField {
         label.setText(showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label);
         if (weatherData != null) {
         	humidityValue = weatherData.get("humidity");
-			if (currentWeather instanceof Lang.Number) {
-	        	humidity.setText(Math.round(currentWeather).toString().substring(0, 4));
+			if (humidityValue instanceof Lang.Number) {
+	        	humidity.setText(Math.round(humidityValue).toString().substring(0, 4));
 			}
-    	} else {
-			if (weatherData != null && weatherData.get("error") != null) {
-				background.setColor(Graphics.COLOR_RED);
-				humidity.setColor(Graphics.COLOR_WHITE);
-				humidity.setText(weatherData.get("error").toString().substring(0, 4));
-			} else {
-				if (errorDrawable != null) {
-					humidity.setVisible(false);
-					errorDrawable.setText("N/A 1");
-					errorDrawable.setVisible(true);
-				} else {
-					humidity.setText("N/A 2");
-				}
-			}
-		}
+
+            pressureValue = weatherData.get("pressure");
+            if (pressureValue instanceof Lang.Number) {
+                pressure.setText(Math.round(humidityValue).toString().substring(0, 4));
+            }
+    	}
+//    	 else {
+//			if (weatherData != null && weatherData.get("error") != null) {
+//				background.setColor(Graphics.COLOR_RED);
+//				humidity.setColor(Graphics.COLOR_WHITE);
+//				humidity.setText(weatherData.get("error").toString().substring(0, 4));
+//			} else {
+//				if (errorDrawable != null) {
+//					humidity.setVisible(false);
+//					errorDrawable.setText("N/A 1");
+//					errorDrawable.setVisible(true);
+//				} else {
+//					humidity.setText("N/A 2");
+//				}
+//			}
+//		}
 		if (getBackgroundColor() == Graphics.COLOR_WHITE) {
 			if (temperatureDrawable != null) {
 				temperatureDrawable.setColor(Graphics.COLOR_BLACK);
