@@ -15,6 +15,8 @@ var humidityField = null;
 var humidityValue = null;
 var pressureField = null;
 var pressureValue = null;
+var stationField = null;
+var stationValue = null;
 const intervalKey = "refreshInterval";
 
 (:background)
