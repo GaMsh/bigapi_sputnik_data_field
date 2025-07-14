@@ -21,13 +21,13 @@ class BAS_DataFieldView extends WatchUi.DataField {
 	const secondsToDisplayVersion = 14;
 	var initialTime;
 	var showShortLabel;
-	
+
     function initialize(notifications) {
         DataField.initialize();
         weatherData = null;
         enableNotifications = notifications;
         try {
-			temperatureField = createField("Temperature", TEMPERATURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32, 
+			temperatureField = createField("Temperature", TEMPERATURE_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
 				{:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
             humidityField = createField("Humidity", HUMIDITY_FIELD_ID, FitContributor.DATA_TYPE_SINT32,
                 {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=>"C"});
@@ -69,7 +69,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
             View.setLayout(Rez.Layouts.BottomLeftLayout(dc));
 
         // Bottom right quadrant so we'll use the bottom right layout
-        } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_RIGHT)) { 
+        } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_RIGHT)) {
             View.setLayout(Rez.Layouts.BottomRightLayout(dc));
         // Use the generic, centered layout
 		}
@@ -103,11 +103,12 @@ class BAS_DataFieldView extends WatchUi.DataField {
     function onUpdate(dc) {
     	dc.clear();
         var label = View.findDrawableById("label") as WatchUi.Text;
-		
+
         // Set the background color
 		var background = View.findDrawableById("Background") as WatchUi.Text;
         background.setColor(getBackgroundColor());
 
+		var temperatureDrawable = View.findDrawableById("temperature") as WatchUi.Text;
         var humidity = View.findDrawableById("humidity") as WatchUi.Text;
 		humidity.setVisible(true);
         var pressure = View.findDrawableById("pressure") as WatchUi.Text;
@@ -117,10 +118,9 @@ class BAS_DataFieldView extends WatchUi.DataField {
 			errorDrawable.setVisible(false);
 		}
 
-		var temperatureDrawable = View.findDrawableById("temperature") as WatchUi.Text;
         var currentWeather = null;
-//        label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
-        if (weatherData != null && weatherData.hasKey(selectedValue) && weatherData.get(selectedValue) != null) {
+        label.setText(showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label);
+        if (weatherData != null) {
         	humidityValue = weatherData.get("humidity");
 			if (currentWeather instanceof Lang.Number) {
 	        	humidity.setText(Math.round(currentWeather).toString().substring(0, 4));
@@ -176,19 +176,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
-				} 
+				}
 			}
 			else {
 				humidity.setColor(Graphics.COLOR_PURPLE);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
-				} 
+				}
 			}
             label.setColor(Graphics.COLOR_BLACK);
 		}
         else if (currentWeather != null && getBackgroundColor() == Graphics.COLOR_BLACK) {
-            humidity.setColor(Graphics.COLOR_WHITE);        	
+            humidity.setColor(Graphics.COLOR_WHITE);
 			if (weatherData != null && weatherData.hasKey("error")) {
 				if (weatherData.hasKey("hideError")) {
 					humidity.setColor(Graphics.COLOR_LT_GRAY);
@@ -219,14 +219,14 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
-				} 
+				}
 			}
 			else {
 				humidity.setColor(Graphics.COLOR_PURPLE);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
 					notified = true;
-				} 
+				}
 			}
             label.setColor(Graphics.COLOR_WHITE);
         } else {
@@ -276,10 +276,10 @@ class BAS_DataFieldView extends WatchUi.DataField {
     	} else {
         	version.setBackgroundColor(Graphics.COLOR_TRANSPARENT);
         	version.setText("");
-		}    	
-		
+		}
+
         // Call parent's onUpdate(dc) to redraw the layout
         View.onUpdate(dc);
-    }    
+    }
 
 }

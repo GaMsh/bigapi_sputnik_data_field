@@ -18,18 +18,17 @@ class TouchDelegate extends WatchUi.BehaviorDelegate {
     	var gregorian;
     	
         if (clickEvent.getType() == CLICK_TYPE_TAP) {
-        	// toggle ozone vs pm2.5 display
-        	if (view.displayPm2_5 == true) {
-        		view.displayPm2_5 = false;
-    		} else {
-    			view.displayPm2_5 = true;
-			}
-        	// and immediately update the air quality value
+//        	// toggle ozone vs pm2.5 display
+//        	if (view.displayPm2_5 == true) {
+//        		view.displayPm2_5 = false;
+//    		} else {
+//    			view.displayPm2_5 = true;
+//			}
+
 			var lastTime = Background.getLastTemporalEventTime();
 			if (lastTime != null) {
 				gregorian = Gregorian.info(lastTime, Time.FORMAT_MEDIUM);
 				System.println("last time was " + gregorian.hour + ":" + gregorian.min.format("%02d"));
-			    // Events scheduled for a time in the past trigger immediately
 			    var nextTime = lastTime.add(FIVE_MINUTES);
 			    Background.registerForTemporalEvent(nextTime);
 			} else {
