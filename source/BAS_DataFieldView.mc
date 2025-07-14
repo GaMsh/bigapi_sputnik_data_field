@@ -92,7 +92,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info) {
-    	aqiValue = aqiData;
+    	aqiValue = weatherData;
     }
 
     // Display the value you computed here. This will be called
