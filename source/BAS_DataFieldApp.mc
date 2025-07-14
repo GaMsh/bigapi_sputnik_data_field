@@ -27,7 +27,7 @@ class BAS_DataFieldApp extends Application.AppBase {
 	const enableNotificationsKey = "enableNotifications";
 	var enableNotifications = false;
 	var inBackground = false;
-	var aqiProvider = 1;
+//	var aqiProvider = 1;
 	var fieldIsDirty = true;
 			
 	function readKeyBool(myApp,key,thisDefault) {

@@ -71,7 +71,7 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
            aqi = { "error" => responseCode };
            interval = minimumInterval;
        }
-       aqi.put( "provider", Application.Properties.getValue("aqiProvider"));
+//       aqi.put( "provider", Application.Properties.getValue("aqiProvider"));
 	   Background.registerForTemporalEvent(new Time.Duration(interval));       
        Background.exit(aqi);
    }
