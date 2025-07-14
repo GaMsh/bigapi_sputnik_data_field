@@ -86,9 +86,9 @@ class BAS_DataFieldView extends WatchUi.DataField {
         }
 		var label = View.findDrawableById("label") as WatchUi.Text;
 		label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
-		var tempLabel = View.findDrawableById("tempLabel") as WatchUi.Text;
-		if (tempLabel != null) {
-			tempLabel.setText("Temp");
+		var pressure = View.findDrawableById("pressure") as WatchUi.Text;
+		if (pressure != null) {
+			pressure.setText("Temp");
 		}
         return;
     }
@@ -112,14 +112,14 @@ class BAS_DataFieldView extends WatchUi.DataField {
         background.setColor(getBackgroundColor());
 
         // Set the foreground color and value
-        var value = View.findDrawableById("value") as WatchUi.Text;
-		value.setVisible(true);
+        var humidity = View.findDrawableById("humidity") as WatchUi.Text;
+		humidity.setVisible(true);
 		var errorDrawable = View.findDrawableById("errorValue") as WatchUi.Text;
 		if (errorDrawable != null && errorDrawable has :setVisible) {
 			errorDrawable.setVisible(false);
 		}
 		var temperatureDrawable = View.findDrawableById("temperature") as WatchUi.Text;
-        var currentAqi = null;
+        var currentWeather = null;
         // if the user has toggled to display ozone but we don't have a value for it in the results
         // switch back to displaying PM 2.5
         if (weatherData != null) {
@@ -132,9 +132,9 @@ class BAS_DataFieldView extends WatchUi.DataField {
         label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
 		var selectedValue = displayPm2_5 ? particulateValue : ozoneValue;
         if (weatherData != null && weatherData.hasKey(selectedValue) && weatherData.get(selectedValue) != null) {
-        	currentAqi = weatherData.get(selectedValue);
-			if (currentAqi instanceof Lang.Number) {
-	        	value.setText(Math.round(currentAqi).toString().substring(0, 4));
+        	currentWeather = weatherData.get(selectedValue);
+			if (currentWeather instanceof Lang.Number) {
+	        	value.setText(Math.round(currentWeather).toString().substring(0, 4));
 			}
     	} else {
 			if (weatherData != null && weatherData.get("error") != null) {
@@ -156,7 +156,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				temperatureDrawable.setColor(Graphics.COLOR_BLACK);
 			}
 		}
-		if (currentAqi != null && getBackgroundColor() == Graphics.COLOR_WHITE) {
+		if (currentWeather != null && getBackgroundColor() == Graphics.COLOR_WHITE) {
 			if (weatherData != null && weatherData.hasKey("error")) {
 				if (weatherData.hasKey("hideError")) {
 					value.setColor(Graphics.COLOR_LT_GRAY);
@@ -170,19 +170,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				}
 				notified = false;
 			}
-			else if (currentAqi < 51) {
+			else if (currentWeather < 51) {
 				value.setColor(Graphics.COLOR_DK_GREEN);
 				notified = false;
 			}
-			else if (currentAqi < 101) {
+			else if (currentWeather < 101) {
 				value.setColor(Graphics.COLOR_YELLOW);
 				notified = false;
 			}
-			else if (currentAqi < 151) {
+			else if (currentWeather < 151) {
 				value.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
-			else if (currentAqi < 201) {
+			else if (currentWeather < 201) {
 				value.setColor(Graphics.COLOR_DK_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);
@@ -198,7 +198,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 			}
             label.setColor(Graphics.COLOR_BLACK);
 		}
-        else if (currentAqi != null && getBackgroundColor() == Graphics.COLOR_BLACK) {
+        else if (currentWeather != null && getBackgroundColor() == Graphics.COLOR_BLACK) {
             value.setColor(Graphics.COLOR_WHITE);        	
 			if (weatherData != null && weatherData.hasKey("error")) {
 				if (weatherData.hasKey("hideError")) {
@@ -213,19 +213,19 @@ class BAS_DataFieldView extends WatchUi.DataField {
 				}
 				notified = false;
 			}
-			else if (currentAqi < 51) {
+			else if (currentWeather < 51) {
 				value.setColor(0x00FD00/*Graphics.COLOR_GREEN*/);
 				notified = false;
 			}
-			else if (currentAqi < 101) {
+			else if (currentWeather < 101) {
 				value.setColor(0xFFFF00);
 				notified = false;
 			}
-			else if (currentAqi < 151) {
+			else if (currentWeather < 151) {
 				value.setColor(Graphics.COLOR_ORANGE);
 				notified = false;
 			}
-			else if (currentAqi < 201) {
+			else if (currentWeather < 201) {
 				value.setColor(Graphics.COLOR_RED);
 				if (Attention has :playTone && enableNotifications && !notified) {
 					Attention.playTone(Attention.TONE_CANARY);

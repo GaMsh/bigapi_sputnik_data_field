@@ -3,9 +3,9 @@
     <layout id="MainLayout">
         <drawable class="Background" />
         <label id="label" x="left" y="bottom" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
-        <label id="value" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_NUMBER_MILD" />
+        <label id="humidity" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_NUMBER_MILD" />
         <label id="errorValue" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_SMALL" visible="false"/>
-        <label id="indicator" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
+        <label id="station" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
         <label
         	id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -15,10 +15,10 @@
     <layout id="MainRoundLayout">
         <drawable class="Background" />
         <text-area width="fill" height="15%" id="label" x="center" y="70%" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_TINY" />
-        <label id="value" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_NUMBER_MILD" />
+        <label id="humidity" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_NUMBER_MILD" />
         <label id="temperature" x="left" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_NUMBER_MILD" />
         <label id="errorValue" x="center" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_SMALL" visible="false"/>
-        <label id="indicator" x="center" y="90%" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_XTINY" />
+        <label id="station" x="center" y="90%" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_XTINY" />
         <label
         	id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -34,10 +34,10 @@
                 <font>Graphics.FONT_SYSTEM_SMALL</font>
             </fonts>
         </text-area>
-        <label id="value" x="88%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_NUMBER_MEDIUM" />
+        <label id="humidity" x="88%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_NUMBER_MEDIUM" />
         <label id="errorValue" x="88%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_SMALL" visible="false"/>
-        <label id="tempLabel" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
-        <label id="indicator" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
+        <label id="pressure" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
+        <label id="station" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
         <label
         	id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -48,10 +48,10 @@
         <drawable class="Background" />
         <label id="temperature" x="6%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_NUMBER_MILD" />
         <label id="label" x="center" y="center" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_SYSTEM_MEDIUM" />
-        <label id="value" x="94%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_NUMBER_MILD" />
+        <label id="humidity" x="94%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_NUMBER_MILD" />
         <label id="errorValue" x="94%" y="center" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_SMALL" visible="false"/>
-        <label id="tempLabel" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
-        <label id="indicator" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
+        <label id="pressure" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
+        <label id="station" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
         <label
         	id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -63,8 +63,8 @@
     <layout id="TopLeftLayout">
         <drawable class="Background" />
         <label id="label" x="95" y="75" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
-        <label id="value" x="95" y="42" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_LARGE" />
-        <label id="indicator" x="left" y="top" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_XTINY" />
+        <label id="humidity" x="95" y="42" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_LARGE" />
+        <label id="station" x="left" y="top" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_XTINY" />
         <label id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
         	font="Graphics.FONT_MEDIUM" color="Graphics.COLOR_ORANGE">
@@ -72,8 +72,8 @@
     <layout id="TopRightLayout">
         <drawable class="Background" />
         <label id="label" x="14" y="75" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
-        <label id="value" x="14" y="42" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_LARGE" />
-        <label id="indicator" x="right" y="top" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
+        <label id="humidity" x="14" y="42" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_LARGE" />
+        <label id="station" x="right" y="top" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
         <label id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
         	font="Graphics.FONT_MEDIUM" color="Graphics.COLOR_ORANGE">
@@ -81,8 +81,8 @@
     <layout id="BottomLeftLayout">
         <drawable class="Background" />
         <label id="label" x="95" y="10" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_TINY" />
-        <label id="value" x="95" y="27" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_LARGE" />
-        <label id="indicator" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_XTINY" />
+        <label id="humidity" x="95" y="27" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_LARGE" />
+        <label id="station" x="left" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_XTINY" />
         <label id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
         	font="Graphics.FONT_MEDIUM" color="Graphics.COLOR_ORANGE">
@@ -90,8 +90,8 @@
     <layout id="BottomRightLayout">
         <drawable class="Background" />
         <label id="label" x="14" y="10" color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_TINY" />
-        <label id="value" x="14" y="27" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_LARGE" />
-        <label id="indicator" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
+        <label id="humidity" x="14" y="27" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_LARGE" />
+        <label id="station" x="right" y="bottom" color="Graphics.COLOR_PURPLE" justification="Graphics.TEXT_JUSTIFY_RIGHT" font="Graphics.FONT_XTINY" />
         <label id="version" x="center" y="center"
         	justification="Graphics.TEXT_JUSTIFY_CENTER"
         	font="Graphics.FONT_MEDIUM" color="Graphics.COLOR_BLACK"
