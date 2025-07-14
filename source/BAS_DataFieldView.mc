@@ -271,7 +271,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 //			}
 		}
 		if (temperatureDrawable != null && temperatureValue != null) {
-			var mySettings = System.getDeviceSettings();
+//			var mySettings = System.getDeviceSettings();
 			var workingTemperature = Math.round(temperatureValue);
 //			if (mySettings.temperatureUnits == System.UNIT_METRIC)
 //			{
