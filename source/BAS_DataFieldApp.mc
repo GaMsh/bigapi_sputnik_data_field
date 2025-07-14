@@ -102,36 +102,45 @@ class BAS_DataFieldApp extends Application.AppBase {
         System.println("onBackgroundData=" + data_raw + " at " + ts);
         if (data_raw != null) {
 			var data = data_raw as Lang.Dictionary;
-			if (data.hasKey("Temperature")) {
-				temperatureValue = data.get("Temperature");
-				weatherData = data;
-				if (temperatureField != null && temperatureValue != null && temperatureValue instanceof Toybox.Lang.Number) {
-					temperatureField.setData(temperatureValue);
-				}
-    		} else if (data.hasKey("error")) {
-    			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
-    				aqiField.setData(0);
-    				fieldIsDirty = true;
-    				System.println("Recording zero for error fetching BAS");
-    			}
-    			if (weatherData == null) {
-    				weatherData = { "error" => data.get("error"), "hideError" => data.get("hideError") };
-    			} else {
-    				weatherData.put("error", data.get("error"));
-    				weatherData.put("hideError", data.get("hideError"));
-				}
-			} else {
-    			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
-    				aqiField.setData(0);
-    				fieldIsDirty = true;
-    				System.println("Recording zero for missing BAS");
-    			}
-    			if (weatherData == null) {
-    				weatherData = { "error" => "No data available" };
-				} else {			
-					weatherData.put("error", "No data available");
-				}
-			}
+
+            temperatureValue = data.get("temperature");
+            humidityValue = data.get("humidity");
+            pressureValue = data.get("pressure");
+            stationValue = data.get("station");
+
+            weatherData = data;
+
+//			if (data.hasKey("Temperature")) {
+//				temperatureValue = data.get("Temperature");
+//				weatherData = data;
+//				if (temperatureField != null && temperatureValue != null && temperatureValue instanceof Toybox.Lang.Number) {
+//					temperatureField.setData(temperatureValue);
+//				}
+//  //  		} else if (data.hasKey("error")) {
+//    			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
+//    				aqiField.setData(0);
+//    				fieldIsDirty = true;
+//    				System.println("Recording zero for error fetching BAS");
+//    			}
+//    			if (weatherData == null) {
+//    				weatherData = { "error" => data.get("error"), "hideError" => data.get("hideError") };
+   // 			} else {
+ //   				weatherData.put("error", data.get("error"));
+  //  				weatherData.put("hideError", data.get("hideError"));
+//				}
+//			} else {
+//    			if (Application.Properties.getValue("zerosForNoData") && aqiField != null) {
+//    				aqiField.setData(0);
+//    				fieldIsDirty = true;
+//    				System.println("Recording zero for missing BAS");
+//    			}
+//    			if (weatherData == null) {
+  //  				weatherData = { "error" => "No data available" };
+//				} else {
+//					weatherData.put("error", "No data available");
+//				}
+//			}
+
 			if (Application has :Storage) {
 				if (weatherData instanceof Dictionary) {
 					Application.Storage.setValue("weatherData", weatherData);

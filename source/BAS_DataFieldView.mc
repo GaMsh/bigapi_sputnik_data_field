@@ -10,11 +10,9 @@ using Toybox.Math;
 class BAS_DataFieldView extends WatchUi.DataField {
 
     hidden var weatherData;
-    const particulateValue = "PM2.5";
-    const ozoneValue = "O3";
 	var enableNotifications = false;
 	var notified = false;
-	var displayPm2_5 = true;
+//	var displayPm2_5 = true;
 	const TEMPERATURE_FIELD_ID = 0;
     const HUMIDITY_FIELD_ID = 1;
     const PRESSURE_FIELD_ID = 2;
@@ -85,10 +83,9 @@ class BAS_DataFieldView extends WatchUi.DataField {
 			}
         }
 		var label = View.findDrawableById("label") as WatchUi.Text;
-		label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
 		var pressure = View.findDrawableById("pressure") as WatchUi.Text;
 		if (pressure != null) {
-			pressure.setText("Temp");
+			pressure.setText("Pressure");
 		}
         return;
     }
@@ -111,28 +108,20 @@ class BAS_DataFieldView extends WatchUi.DataField {
 		var background = View.findDrawableById("Background") as WatchUi.Text;
         background.setColor(getBackgroundColor());
 
-        // Set the foreground color and value
         var humidity = View.findDrawableById("humidity") as WatchUi.Text;
 		humidity.setVisible(true);
+        var pressure = View.findDrawableById("pressure") as WatchUi.Text;
+        pressure.setVisible(true);
 		var errorDrawable = View.findDrawableById("errorValue") as WatchUi.Text;
 		if (errorDrawable != null && errorDrawable has :setVisible) {
 			errorDrawable.setVisible(false);
 		}
+
 		var temperatureDrawable = View.findDrawableById("temperature") as WatchUi.Text;
         var currentWeather = null;
-        // if the user has toggled to display ozone but we don't have a value for it in the results
-        // switch back to displaying PM 2.5
-        if (weatherData != null) {
-        	if (!displayPm2_5) {
-		        if (!weatherData.hasKey(ozoneValue) || weatherData.get(ozoneValue) == null) {
-		        	displayPm2_5 = true;
-		    	}
-	    	}
-    	}
-        label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
-		var selectedValue = displayPm2_5 ? particulateValue : ozoneValue;
+//        label.setText(displayPm2_5 ? (showShortLabel ? Rez.Strings.shortLabel : Rez.Strings.label) : Rez.Strings.ozoneLabel);
         if (weatherData != null && weatherData.hasKey(selectedValue) && weatherData.get(selectedValue) != null) {
-        	currentWeather = weatherData.get(selectedValue);
+        	humidityValue = weatherData.get("humidity");
 			if (currentWeather instanceof Lang.Number) {
 	        	humidity.setText(Math.round(currentWeather).toString().substring(0, 4));
 			}
