@@ -164,7 +164,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					}
 				} else {
-					background.setColor(Graphics.COLOR_RED);
+					background.setColor(Graphics.COLOR_GREEN);
 					humidityDrawable.setColor(Graphics.COLOR_WHITE);
 					humidityDrawable.setText(weatherData.get("error").toString().substring(0, 4));
 				}
@@ -207,7 +207,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 						temperatureDrawable.setColor(Graphics.COLOR_LT_GRAY);
 					}
 				} else {
-					background.setColor(Graphics.COLOR_RED);
+					background.setColor(Graphics.COLOR_YELLOW);
 					humidityDrawable.setColor(Graphics.COLOR_WHITE);
 					humidityDrawable.setText(weatherData.get("error").toString().substring(0, 4));
 				}
