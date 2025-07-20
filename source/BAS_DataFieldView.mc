@@ -82,7 +82,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 	            View.setLayout(Rez.Layouts.MainLayout(dc));
 			}
         }
-		var label = View.findDrawableById("label") as WatchUi.Text;
+		//var label = View.findDrawableById("label") as WatchUi.Text;
 		var pressure = View.findDrawableById("pressure") as WatchUi.Text;
 		if (pressure != null) {
 			pressure.setText("Pressure");
