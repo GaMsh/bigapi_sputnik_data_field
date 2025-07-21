@@ -44,7 +44,7 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
    // set up the response callback function
    function onReceive(responseCode as Lang.Number, data as Null or Lang.Dictionary or Lang.String) as Void {
        var aqi = null;
-       var interval = null;
+       var interval = minimumInterval;
        if (responseCode == 200) {
            System.println("Request Successful " + data);
            if (data.isEmpty()) {
