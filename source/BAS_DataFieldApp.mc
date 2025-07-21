@@ -17,13 +17,12 @@ var pressureField = null;
 var pressureValue = null;
 var stationField = null;
 var stationValue = null;
-const intervalKey = "refreshInterval";
 
 (:background)
 class BAS_DataFieldApp extends Application.AppBase {
 
 	const myKey = "weatherData";
-	const pm2_5 = "PM2.5";
+//	const pm2_5 = "PM2.5";
 	const enableNotificationsKey = "enableNotifications";
 	var enableNotifications = false;
 	var inBackground = false;

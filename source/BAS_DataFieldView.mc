@@ -135,6 +135,11 @@ class BAS_DataFieldView extends WatchUi.DataField {
             if (pressureValue instanceof Lang.Number) {
                 pressureDrawable.setText(Math.round(pressureValue).toString().substring(0, 4));
             }
+
+            stationValue = weatherData.get("station");
+            if (stationValue instanceof Lang.Number) {
+                stationDrawable.setText(Math.round(stationValue).toString();
+            }
     	}
 //    	 else {
 //			if (weatherData != null && weatherData.get("error") != null) {
@@ -254,7 +259,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
             }
         }
 		if (weatherData != null && weatherData.hasKey("url")) {
-			var indicator = View.findDrawableById("indicator") as WatchUi.Text;
+//			var indicator = View.findDrawableById("indicator") as WatchUi.Text;
 //			switch(weatherData.get("url")) {
 //			case 1:
 //				indicator.setText("AirNow");
@@ -265,8 +270,8 @@ class BAS_DataFieldView extends WatchUi.DataField {
 //				indicator.setColor(Graphics.COLOR_PURPLE);
 //				break;
 //			case 3:
-				indicator.setColor(Graphics.COLOR_DK_GRAY);
-				indicator.setText(weatherData.get("url"));
+				label.setColor(Graphics.COLOR_DK_GRAY);
+				label.setText(weatherData.get("url"));
 //				break;
 //			}
 		}

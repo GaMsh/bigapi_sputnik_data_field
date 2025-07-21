@@ -44,7 +44,6 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
    // set up the response callback function
    function onReceive(responseCode as Lang.Number, data as Null or Lang.Dictionary or Lang.String) as Void {
        var aqi = null;
-       var interval = Application.Properties.getValue(intervalKey);
        if (responseCode == 200) {
            System.println("Request Successful " + data);
            if (data.isEmpty()) {
@@ -63,7 +62,7 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
        	 	 	interval = 60 * 40;
    	 	 	 }
            } else {
-       	   	interval = 60 * 40;
+       	   	  interval = 60 * 40;
        	   }
        }
        else {
@@ -71,7 +70,6 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
            aqi = { "error" => responseCode };
            interval = minimumInterval;
        }
-//       aqi.put( "provider", Application.Properties.getValue("aqiProvider"));
 	   Background.registerForTemporalEvent(new Time.Duration(interval));       
        Background.exit(aqi);
    }
@@ -86,7 +84,7 @@ class BAS_ServiceDelegate extends Toybox.System.ServiceDelegate {
             "lat" => latitude,
             "lon" => longitude,
             "device" => System.getDeviceSettings().partNumber,
-            "sysId" => System.getDeviceSettings().uniqueIdentifier,
+            "deviceId" => System.getDeviceSettings().uniqueIdentifier,
             "email" => email
         };
         var options = {
