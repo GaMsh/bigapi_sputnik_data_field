@@ -81,7 +81,7 @@ class BAS_DataFieldApp extends Application.AppBase {
     	
 		//register for temporal events if they are supported
     	if(Toybox.System has :ServiceDelegate) {
-     		Background.registerForTemporalEvent(new Time.Duration(Application.Properties.getValue(intervalKey)));
+     		Background.registerForTemporalEvent(new Time.Duration(5 * 60));
     	} else {
     		System.println("****background not available on this device****");
     	}

@@ -138,7 +138,7 @@ class BAS_DataFieldView extends WatchUi.DataField {
 
             stationValue = weatherData.get("station");
             if (stationValue instanceof Lang.Number) {
-                stationDrawable.setText(Math.round(stationValue).toString();
+                stationDrawable.setText(Math.round(stationValue).toString());
             }
     	}
 //    	 else {
